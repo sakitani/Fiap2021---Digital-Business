@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import br.com.fiap.dao.SetupDao;
+
 import br.com.fiap.model.Setup;
 
 @Named
@@ -17,6 +18,7 @@ public class SetupBean {
 	
 	private Setup setup = new Setup();
 
+	
 
 	public void save() {
 		new SetupDao().save(this.setup);
@@ -27,8 +29,10 @@ public class SetupBean {
 	
 	public List<Setup> getSetups() {
 		return new SetupDao().getAll();
-		
 	}
+	
+
+	
 	
 	public void executar() {
 		System.out.println("acionando o bean");	
@@ -43,6 +47,7 @@ public class SetupBean {
 	public void setSetup(Setup setup) {
 		this.setup = setup;
 	}
+	
 	
 	
 }

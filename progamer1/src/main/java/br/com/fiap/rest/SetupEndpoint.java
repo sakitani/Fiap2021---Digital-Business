@@ -84,20 +84,17 @@ public class SetupEndpoint {
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response destroy(@PathParam("id") Long id, Setup setup) {
+	public Response destroy(@PathParam("id") Long id) {
 		if(id == null) {
-			return Response.status(Response.Status.BAD_REQUEST).build();
-		}
-		if(setup == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		if(dao.findById(id) == null) {
 			return Response.status(Response.Status.NOT_FOUND).build();
 		}
-		//setup.setId(id);
+
 		try {
-			dao.delete(setup);
-			return Response.status(Response.Status.OK).entity(setup).build();			
+			dao.delete(id);
+			return Response.status(Response.Status.OK).entity(id).build();			
 		} catch (Exception e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}

@@ -41,14 +41,12 @@ public class SetupDao {
 		manager.getTransaction().commit();
 	}
 
-	public void delete(Setup setup) {
-		manager.getTransaction().begin();
-		manager.merge(setup);
-		//manager.detach(setup);
-		manager.remove(setup);
-		//manager.persist(setup);
-		manager.getTransaction().commit();
-		
+	public void delete(Long id) {
+        manager.getTransaction().begin();
+        Setup setup = manager.find(Setup.class, id);
+        manager.remove(setup);
+        manager.flush();
+        manager.getTransaction().commit();
 	}
 
 	

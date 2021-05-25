@@ -8,88 +8,47 @@
 
 <ui:composition template="_template.xhtml">
 
+	<ui:define name="menu">
+	
+	</ui:define>
+
 	<ui:define name="content">
-		<p:messages id="messages">
-			<p:autoUpdate />
-		</p:messages>
+
 		<h:form>
 			<p:card class="card-form">
 
-				<f:facet name="title">Nem Profile</f:facet>
-				<h:panelGrid colums="2">
-					<p:outputLabel value="Name" for="name" />
-					<p:inputText id="name" value="#{profileBean.profile.name}"
-						required="true">
-						<f:ajax event="blur" render="messages" />
-					</p:inputText>
-
-                    <p:outputLabel value="birth Date" for="birthDate" />
-                    <p:inputMask id="birthDate" value="#{profileBean.profile.birthDate}"
-                        required="true" mask="99/99/9999" 
-                        requiredMessage="Data inválida! Siga o padrão:dd/MM/yyyy">
-                        <f:ajax event="blur" render="messages" />
-                    </p:inputMask>
-
+				<f:facet name="title">Login</f:facet>
+				<h:panelGrid colums="3">
+					
 					<p:outputLabel value="E-mail" for="email" />
 					<p:inputText id="email" value="#{profileBean.profile.email}"
 						required="true"
 						validatorMessage="E-mail Inválido! Siga o padrão: user@progamer.com">
 						<f:validateRegex
 							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-						<f:ajax event="blur" render="messages" />
+						<f:ajax event="blur" render="message-email" />
 					</p:inputText>
+					<p:message for="email" id="message-email"/>
 
 					<p:outputLabel value="Password" for="password" />
 					<p:password id="password" value="#{profileBean.profile.password}"
-						required="true"
-						validatorMessage="Passaword:A senha precisa ter letras maiúsculas e minúsculas, caracteres especiais e números. Tamanho de 6 a 15.  ">
-						<f:validateRegex
-							pattern="((?=.*\d)(?=.*[a-zA-Z])(?=.*[@#$%])[a-zA-Z0-9@$$%]{6,15})" />
-						<f:ajax event="blur" render="messages" />
+						required="true">
+						<f:ajax event="blur" render="message-passoword" />
 					</p:password>
+					<p:message for="password" id="message-passoword"/>
 
 				</h:panelGrid>
 
 				<f:facet name="footer">
-					<p:commandButton icon="pi pi-check" value="Save"
-						action="#{profileBean.save}">
+					<p:commandButton icon="pi pi-check" value="Login"
+						action="#{profileBean.login}">
 						<f:ajax execute="@form" render="form-profiles" />
 					</p:commandButton>
-					<p:commandButton icon="pi pi-times" value="Cancel"
-						styleClass="ui-button-secondary" style="margin-left: .5em" />
+					<p:messages id="messages"/>
 				</f:facet>
 			</p:card>
 		</h:form>
 		
-		<div class="card" id="card-profile-list">
-			<h:form id="form-profiles">
-				<p:dataTable id="profiles" var="profile" value="#{profileBean.profiles}"
-					rowKey="#{profile.id}" selectionMode="single">
-
-					<f:facet name="header">
-	                Profiles List
-	            </f:facet>
-
-
-					<p:column headerText="Name">
-						<h:outputText value="#{profile.name}" />
-					</p:column>
-					<p:column headerText="Birthday">
-						<h:outputText value="#{profile.birthDate}" />
-					</p:column>
-					<p:column headerText="E-mail">
-						<h:outputText value="#{profile.email}" />
-					</p:column>
-				</p:dataTable>
-
-				<p:contextMenu for="profiles">
-					<p:menuitem value="Delete" update="profiles" icon="pi pi-times"
-						action="#{profileBean.executar}" />
-				</p:contextMenu>
-			</h:form>
-		</div>
-	
-
 	</ui:define>
 
 </ui:composition>

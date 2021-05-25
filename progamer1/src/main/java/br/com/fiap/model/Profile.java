@@ -20,7 +20,17 @@ public class Profile {
 	
 	public Profile() {}
 	
+
 	
+	public Profile(Long id, String name, String birthDate, String email) {
+		this.id = id;
+		this.name = name;
+		this.birthDate = birthDate;
+		this.email = email;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
