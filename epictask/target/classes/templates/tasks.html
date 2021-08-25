@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Epic Task</h1>
+
+	<h2>Tasks</h2>
+	<a href="/task/new">Nova tarefa</a>
+	
+	<!-- No java faria assim:
+	for(Task task; tasks) {
+	task.getTitle();
+	}
+	 -->
+
+	<ul th:each="task: ${tasks}" >
+		<li>
+		<p th:text="${task.title}"></p>
+		<p th:text="${task.description}"></p>
+		<p th:text="${task.points}"></p>
+		<button>Pegar</button>
+		</li>
+	</ul>
+
+ </body>
+</html>

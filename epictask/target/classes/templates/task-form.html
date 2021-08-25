@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Epic Task</h1>
+	
+	<h2>Nova Tarefa</h2>
+	
+	<form action="/task" method="post">
+	
+	<label for="title" >Título</label>
+	<input type="text" name="title" id="title" >
+
+	<label for="description" >Descrição</label>
+	<textarea id="description" name="description" rows="" cols=""></textarea>	
+
+	<label for="points" >Pontos</label>
+	<input type="number" name="points" id="points">
+	
+	<a href="/task">Cancelar</a>
+	<button>Salvar</button>
+	
+	</form>
+
+</body>
+</html>
