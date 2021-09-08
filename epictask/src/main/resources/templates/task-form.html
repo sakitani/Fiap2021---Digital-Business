@@ -9,16 +9,24 @@
 	
 	<h2>Nova Tarefa</h2>
 	
-	<form action="/task" method="post">
+	<form action="/task" method="post" th:object="${task}" >
 	
 	<label for="title" >Título</label>
-	<input type="text" name="title" id="title" >
+	<input type="text" name="title" id="title" th:field="*{title}">
+	 <span th:errors="*{title}" ></span>
 
 	<label for="description" >Descrição</label>
-	<textarea id="description" name="description" rows="" cols=""></textarea>	
+	<textarea id="description" name="description" rows="" cols="" th:field="*{description}"></textarea>	
+	<span th:errors="*{description}" ></span>
 
 	<label for="points" >Pontos</label>
-	<input type="number" name="points" id="points">
+	<input type="range" 
+		name="points" 
+		id="points" 
+		th:field="*{points}"
+		min="10"
+		max="500">
+	<span th:errors="*{points}" ></span>
 	
 	<a href="/task">Cancelar</a>
 	<button>Salvar</button>

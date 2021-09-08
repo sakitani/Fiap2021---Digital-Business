@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -21,16 +22,18 @@ import lombok.Data;
 public class Task {
 	
 	@Id 
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotBlank
+	@NotBlank(message = "O título é obrigatório. Digite um título")
 	private String title;
 	
-	@Size(min = 10)
+	@Size(min = 10, message = "A descrição deve ter pelo menos 15 caracteres")
 	private String description;
 	
-	@Min(10)
+	@Min(value = 10, message = "A pontuação mínima é 10")
+	@Max(value = 500, message = "A pontuação máxima é 500")
 	private int points;	
 
 }
